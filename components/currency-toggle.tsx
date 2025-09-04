@@ -11,7 +11,7 @@ export function CurrencyToggle() {
   const currencies = [
     { code: "EUR", symbol: "€" },
     { code: "USD", symbol: "$" },
-    { code: "GNF", symbol: "GNF" },
+    { code: "XOF", symbol: "CFA" },
   ]
 
   const currentCurrencyData = currencies.find((currency) => currency.code === currentCurrency)

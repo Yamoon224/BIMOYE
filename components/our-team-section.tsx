@@ -56,7 +56,7 @@ export function OurTeamSection() {
                 <Badge variant="secondary" className="mb-3">
                   {language === "fr" ? member.role : member.roleEn}
                 </Badge>
-                <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
+                <p className="text-gray-600 dark:text-gray-300 text-sm mb-4 text-justify">
                   {language === "fr" ? member.description : member.descriptionEn}
                 </p>
                 <div className="flex gap-3">

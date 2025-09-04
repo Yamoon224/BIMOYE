@@ -69,7 +69,7 @@ export function Header() {
             <CurrencyToggle />
 
             {/* User menu */}
-            <DropdownMenu>
+            {/* <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" size="sm" className="hidden md:flex">
                   <User className="h-4 w-4 mr-2" />
@@ -102,7 +102,7 @@ export function Header() {
                   </Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>
-            </DropdownMenu>
+            </DropdownMenu> */}
 
             {/* Mobile menu button */}
             <Button variant="ghost" size="sm" className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>

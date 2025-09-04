@@ -13,8 +13,13 @@ export const metadata: Metadata = {
   title: "BiMOYE - Prestation Multi-Services",
   description:
     "Découvrez et réservez des résidences exceptionnelles pour vos vacances. Villas, chalets, appartements de luxe dans les plus belles destinations.",
-    generator: 'Yamoussa KEITA'
-}
+  generator: "Yamoussa KEITA",
+  icons: {
+    icon: "/favicon.ico", // favicon par défaut
+    shortcut: "/favicon.ico",
+    apple: "/logo.png", // pour iOS si tu veux
+  },
+};
 
 export default function RootLayout({
   children,
