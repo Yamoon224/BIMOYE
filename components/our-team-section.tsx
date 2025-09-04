@@ -19,8 +19,8 @@ const teamMembers = [
   },
   {
     name: "Yamoussa KEITA",
-    role: "PDG Assistant",
-    roleEn: "Assistant CEO",
+    role: "Manager Assistant",
+    roleEn: "Assistant Manager",
     image: "https://groupmafamo.com/images/team/assistant.webp",
     description: "Lead Tech, spécialisé dans la coordination stratégique et opérationnelle.",
     descriptionEn: "CEO's right hand, specialized in strategic and operational coordination.",
