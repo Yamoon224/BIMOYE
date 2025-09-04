@@ -10,10 +10,10 @@ import { Footer } from "@/components/footer"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Mafamo Residences - Réservation de résidences de luxe",
+  title: "BiMOYE - Prestation Multi-Services",
   description:
     "Découvrez et réservez des résidences exceptionnelles pour vos vacances. Villas, chalets, appartements de luxe dans les plus belles destinations.",
-    generator: 'v0.app'
+    generator: 'Yamoussa KEITA'
 }
 
 export default function RootLayout({
