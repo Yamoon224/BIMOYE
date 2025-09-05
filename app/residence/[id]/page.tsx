@@ -166,20 +166,40 @@ export default function ResidenceDetailPage() {
                                     <MapPin className="h-4 w-4" />
                                     <span>{residenceData.location}</span>
                                 </div>
+                                <div className="flex items-center gap-1">
+                                    <Badge className="bg-orange-500 hover:bg-orange-600">{residenceData.category}</Badge>
+                                </div>
                             </div>
                         </div>
                         <div className="flex items-center gap-2">
-                            <Button variant="outline" size="sm">
+                            <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => {
+                                    if (navigator.share) {
+                                        navigator.share({
+                                            title: residenceData.title,
+                                            text: "Découvrez cette résidence incroyable !",
+                                            url: window.location.href,
+                                        })
+                                        .catch((error) => console.log("Erreur de partage :", error))
+                                    } else {
+                                        // Fallback : copie le lien
+                                        navigator.clipboard.writeText(window.location.href)
+                                        alert("Lien copié dans le presse-papiers !")
+                                    }
+                                }}
+                                >
                                 <Share2 className="h-4 w-4 mr-2" />
                                 Partager
                             </Button>
-                            {/* <Button variant="outline" size="sm" onClick={() => setIsFavorite(!isFavorite)}>
-                <Heart className={`h-4 w-4 mr-2 ${isFavorite ? "fill-red-500 text-red-500" : ""}`} />
-                Sauvegarder
-              </Button> */}
+                            <Button variant="outline" size="sm" onClick={() => setIsFavorite(!isFavorite)}>
+                                <Heart className={`h-4 w-4 mr-2 ${isFavorite ? "fill-red-500 text-red-500" : ""}`} />
+                                Sauvegarder
+                            </Button>
                         </div>
                     </div>
-                    <Badge className="bg-orange-500 hover:bg-orange-600">{residenceData.category}</Badge>
+                    
                 </div>
 
                 <div className="grid lg:grid-cols-3 gap-8">
@@ -497,7 +517,7 @@ export default function ResidenceDetailPage() {
 
                                             Pouvez-vous me confirmer la disponibilité ?`;
 
-                                            const phoneNumber = "225564461216";
+                                            const phoneNumber = "2250564461216";
                                             const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
                                             window.open(url, "_blank");
                                         }}
