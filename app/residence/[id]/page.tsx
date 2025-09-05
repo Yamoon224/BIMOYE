@@ -526,14 +526,14 @@ export default function ResidenceDetailPage() {
                                             const imageUrl = `https://bimoye.com${cleanImagePath}`;
 
                                             const message = `Bonjour, je suis intéressé par la réservation de la résidence :
-                                            - 🏡 Résidence : ${residenceData.title}
-                                            - 📷 Photo Résidence : ${imageUrl}
+                                            - 🏠 Résidence : ${residenceData.title}
+                                            - 🖼️ Image : ${imageUrl}
                                             - 📅 Arrivée : ${checkIn.toLocaleDateString("fr-FR")}
                                             - 📅 Départ : ${checkOut.toLocaleDateString("fr-FR")}
                                             - 👥 Voyageurs : ${guests}
-                                            - 💰 Prix par nuit : ${residenceData.price}€
+                                            - 💵 Prix par nuit : ${residenceData.price}Fcfa
                                             - 🌙 Nombre de nuits : ${nights}
-                                            - 📊 Total (avec frais) : ${total}€
+                                            - 🧾 Total (avec frais) : ${total}Fcfa
 
                                             Pouvez-vous me confirmer la disponibilité ?`;
 
