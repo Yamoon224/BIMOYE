@@ -520,8 +520,10 @@ export default function ResidenceDetailPage() {
                                             );
                                             const total = calculateTotal() + Math.round(calculateTotal() * 0.1);
 
-                                            // Récupère l'URL de la première image de la résidence
-                                            const imageUrl = residenceData.images[0];
+                                            // Récupère la première image et nettoie l'URL
+                                            const rawImageUrl = residenceData.images[0] || "";
+                                            const cleanImagePath = rawImageUrl.split("?")[0]; // enlève les paramètres
+                                            const imageUrl = `https://bimoye.com${cleanImagePath}`;
 
                                             const message = `Bonjour, je suis intéressé par la réservation de la résidence :
                                             - 🏡 Résidence : ${residenceData.title}
