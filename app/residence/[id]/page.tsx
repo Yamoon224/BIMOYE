@@ -539,7 +539,8 @@ export default function ResidenceDetailPage() {
 
                                             const phoneNumber = "2250564461216";
                                             const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-                                            window.open(url, "_blank");
+                                            // window.open(url, "_blank");
+                                            window.location.href = url;
                                         }}
                                     >
                                         <CalendarCheck className="w-5 h-5" />
