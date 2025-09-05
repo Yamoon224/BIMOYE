@@ -4,6 +4,8 @@ import { useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+import { Calendar } from "@/components/ui/calendar"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
@@ -129,6 +131,8 @@ export default function ResidenceDetailPage() {
     const [checkIn, setCheckIn] = useState<Date>()
     const [checkOut, setCheckOut] = useState<Date>()
     const [guests, setGuests] = useState("2")
+    const [openCheckIn, setOpenCheckIn] = useState(false)
+    const [openCheckOut, setOpenCheckOut] = useState(false)
 
     const nextImage = () => {
         setCurrentImageIndex((prev) => (prev + 1) % residenceData.images.length)
@@ -376,19 +380,56 @@ export default function ResidenceDetailPage() {
 
                                 <div className="space-y-4">
                                     <div className="grid grid-cols-2 gap-2">
+                                        {/* Arrivée */}
                                         <div>
                                             <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Arrivée</label>
-                                            <Button variant="outline" className="w-full justify-start text-left font-normal">
+                                            <Popover open={openCheckIn} onOpenChange={setOpenCheckIn}>
+                                            <PopoverTrigger asChild>
+                                                <Button
+                                                variant="outline"
+                                                className="w-full justify-start text-left font-normal"
+                                                >
                                                 <CalendarIcon className="mr-2 h-4 w-4" />
                                                 {checkIn ? checkIn.toLocaleDateString("fr-FR") : "Date"}
-                                            </Button>
+                                                </Button>
+                                            </PopoverTrigger>
+                                            <PopoverContent className="w-auto p-0" align="start">
+                                                <Calendar
+                                                mode="single"
+                                                selected={checkIn}
+                                                onSelect={(date) => {
+                                                    setCheckIn(date)
+                                                    setOpenCheckIn(false)
+                                                }}
+                                                />
+                                            </PopoverContent>
+                                            </Popover>
                                         </div>
+
+                                        {/* Départ */}
                                         <div>
                                             <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Départ</label>
-                                            <Button variant="outline" className="w-full justify-start text-left font-normal">
+                                            <Popover open={openCheckOut} onOpenChange={setOpenCheckOut}>
+                                            <PopoverTrigger asChild>
+                                                <Button
+                                                variant="outline"
+                                                className="w-full justify-start text-left font-normal"
+                                                >
                                                 <CalendarIcon className="mr-2 h-4 w-4" />
                                                 {checkOut ? checkOut.toLocaleDateString("fr-FR") : "Date"}
-                                            </Button>
+                                                </Button>
+                                            </PopoverTrigger>
+                                            <PopoverContent className="w-auto p-0" align="start">
+                                                <Calendar
+                                                mode="single"
+                                                selected={checkOut}
+                                                onSelect={(date) => {
+                                                    setCheckOut(date)
+                                                    setOpenCheckOut(false)
+                                                }}
+                                                />
+                                            </PopoverContent>
+                                            </Popover>
                                         </div>
                                     </div>
 
