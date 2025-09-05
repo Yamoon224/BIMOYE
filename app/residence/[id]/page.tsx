@@ -149,6 +149,14 @@ export default function ResidenceDetailPage() {
         return nights * residenceData.price
     }
 
+    const isPastDate = (date: Date) => {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0); // minuit aujourd'hui
+        const d = new Date(date);
+        d.setHours(0, 0, 0, 0); // minuit de la date à tester
+        return d < today;
+    };
+
     return (
         <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
             <div className="container mx-auto px-4 py-8">
@@ -403,59 +411,59 @@ export default function ResidenceDetailPage() {
                                     <div className="grid grid-cols-2 gap-2">
                                         {/* Arrivée */}
                                         <div>
-                                        <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Arrivée</label>
-                                        <Popover open={openCheckIn} onOpenChange={setOpenCheckIn}>
-                                            <PopoverTrigger asChild>
-                                            <Button
-                                                variant="outline"
-                                                className="w-full justify-start text-left font-normal"
-                                            >
-                                                <CalendarIcon className="mr-2 h-4 w-4" />
-                                                {checkIn ? checkIn.toLocaleDateString("fr-FR") : "Date"}
-                                            </Button>
-                                            </PopoverTrigger>
-                                            <PopoverContent className="w-auto p-0" align="start">
-                                                <Calendar
-                                                    mode="single"
-                                                    selected={checkIn}
-                                                    onSelect={(date) => {
-                                                        setCheckIn(date);
-                                                        if (checkOut && date && !isBefore(date, checkOut)) setCheckOut(undefined);
-                                                        setOpenCheckIn(false);
-                                                    }}
-                                                    disabled={(date) => isBefore(date, new Date())} // interdit les dates passées
-                                                />
-                                            </PopoverContent>
-                                        </Popover>
+                                            <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Arrivée</label>
+                                            <Popover open={openCheckIn} onOpenChange={setOpenCheckIn}>
+                                                <PopoverTrigger asChild>
+                                                <Button
+                                                    variant="outline"
+                                                    className="w-full justify-start text-left font-normal"
+                                                >
+                                                    <CalendarIcon className="mr-2 h-4 w-4" />
+                                                    {checkIn ? checkIn.toLocaleDateString("fr-FR") : "Date"}
+                                                </Button>
+                                                </PopoverTrigger>
+                                                <PopoverContent className="w-auto p-0" align="start">
+                                                    <Calendar
+                                                        mode="single"
+                                                        selected={checkIn}
+                                                        onSelect={(date) => {
+                                                            setCheckIn(date);
+                                                            if (checkOut && date && !isBefore(date, checkOut)) setCheckOut(undefined);
+                                                            setOpenCheckIn(false);
+                                                        }}
+                                                        disabled={isPastDate}
+                                                    />
+                                                </PopoverContent>
+                                            </Popover>
                                         </div>
 
                                         {/* Départ */}
                                         <div>
-                                        <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Départ</label>
-                                        <Popover open={openCheckOut} onOpenChange={setOpenCheckOut}>
-                                            <PopoverTrigger asChild>
-                                            <Button
-                                                variant="outline"
-                                                className="w-full justify-start text-left font-normal"
-                                            >
-                                                <CalendarIcon className="mr-2 h-4 w-4" />
-                                                {checkOut ? checkOut.toLocaleDateString("fr-FR") : "Date"}
-                                            </Button>
-                                            </PopoverTrigger>
-                                            <PopoverContent className="w-auto p-0" align="start">
-                                                <Calendar
-                                                    mode="single"
-                                                    selected={checkOut}
-                                                    onSelect={(date) => {
-                                                        setCheckOut(date);
-                                                        setOpenCheckOut(false);
-                                                    }}
-                                                    disabled={(date) =>
-                                                        !checkIn || isBefore(date, addDays(checkIn, 1)) // interdit dates <= checkIn
-                                                    }
-                                                />
-                                            </PopoverContent>
-                                        </Popover>
+                                            <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Départ</label>
+                                            <Popover open={openCheckOut} onOpenChange={setOpenCheckOut}>
+                                                <PopoverTrigger asChild>
+                                                <Button
+                                                    variant="outline"
+                                                    className="w-full justify-start text-left font-normal"
+                                                >
+                                                    <CalendarIcon className="mr-2 h-4 w-4" />
+                                                    {checkOut ? checkOut.toLocaleDateString("fr-FR") : "Date"}
+                                                </Button>
+                                                </PopoverTrigger>
+                                                <PopoverContent className="w-auto p-0" align="start">
+                                                    <Calendar
+                                                        mode="single"
+                                                        selected={checkOut}
+                                                        onSelect={(date) => {
+                                                            setCheckOut(date);
+                                                            setOpenCheckOut(false);
+                                                        }}
+                                                        disabled={(date) =>
+                                                            !checkIn || isPastDate(date) || isBefore(date, addDays(checkIn, 1))
+                                                        }
+                                                    />
+                                                </PopoverContent>
+                                            </Popover>
                                         </div>
                                     </div>
 
@@ -503,12 +511,12 @@ export default function ResidenceDetailPage() {
                                         className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-orange-500 hover:from-blue-700 hover:to-orange-600"
                                         onClick={() => {
                                             if (!checkIn || !checkOut) {
-                                            alert("Veuillez sélectionner vos dates d'arrivée et de départ.");
-                                            return;
+                                                alert("Veuillez sélectionner vos dates d'arrivée et de départ.");
+                                                return;
                                             }
 
                                             const nights = Math.ceil(
-                                            (checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60 * 24)
+                                                (checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60 * 24)
                                             );
                                             const total = calculateTotal() + Math.round(calculateTotal() * 0.1);
 
