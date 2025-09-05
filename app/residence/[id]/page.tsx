@@ -32,6 +32,7 @@ import {
     Utensils,
     CalendarCheck,
 } from "lucide-react"
+import { addDays, isBefore } from "date-fns"
 
 // Données simulées pour la résidence
 const residenceData = {
@@ -402,54 +403,59 @@ export default function ResidenceDetailPage() {
                                     <div className="grid grid-cols-2 gap-2">
                                         {/* Arrivée */}
                                         <div>
-                                            <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Arrivée</label>
-                                            <Popover open={openCheckIn} onOpenChange={setOpenCheckIn}>
+                                        <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Arrivée</label>
+                                        <Popover open={openCheckIn} onOpenChange={setOpenCheckIn}>
                                             <PopoverTrigger asChild>
-                                                <Button
+                                            <Button
                                                 variant="outline"
                                                 className="w-full justify-start text-left font-normal"
-                                                >
+                                            >
                                                 <CalendarIcon className="mr-2 h-4 w-4" />
                                                 {checkIn ? checkIn.toLocaleDateString("fr-FR") : "Date"}
-                                                </Button>
+                                            </Button>
                                             </PopoverTrigger>
                                             <PopoverContent className="w-auto p-0" align="start">
                                                 <Calendar
-                                                mode="single"
-                                                selected={checkIn}
-                                                onSelect={(date) => {
-                                                    setCheckIn(date)
-                                                    setOpenCheckIn(false)
-                                                }}
+                                                    mode="single"
+                                                    selected={checkIn}
+                                                    onSelect={(date) => {
+                                                        setCheckIn(date);
+                                                        if (checkOut && date && !isBefore(date, checkOut)) setCheckOut(undefined);
+                                                        setOpenCheckIn(false);
+                                                    }}
+                                                    disabled={(date) => isBefore(date, new Date())} // interdit les dates passées
                                                 />
                                             </PopoverContent>
-                                            </Popover>
+                                        </Popover>
                                         </div>
 
                                         {/* Départ */}
                                         <div>
-                                            <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Départ</label>
-                                            <Popover open={openCheckOut} onOpenChange={setOpenCheckOut}>
+                                        <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Départ</label>
+                                        <Popover open={openCheckOut} onOpenChange={setOpenCheckOut}>
                                             <PopoverTrigger asChild>
-                                                <Button
+                                            <Button
                                                 variant="outline"
                                                 className="w-full justify-start text-left font-normal"
-                                                >
+                                            >
                                                 <CalendarIcon className="mr-2 h-4 w-4" />
                                                 {checkOut ? checkOut.toLocaleDateString("fr-FR") : "Date"}
-                                                </Button>
+                                            </Button>
                                             </PopoverTrigger>
                                             <PopoverContent className="w-auto p-0" align="start">
                                                 <Calendar
-                                                mode="single"
-                                                selected={checkOut}
-                                                onSelect={(date) => {
-                                                    setCheckOut(date)
-                                                    setOpenCheckOut(false)
-                                                }}
+                                                    mode="single"
+                                                    selected={checkOut}
+                                                    onSelect={(date) => {
+                                                        setCheckOut(date);
+                                                        setOpenCheckOut(false);
+                                                    }}
+                                                    disabled={(date) =>
+                                                        !checkIn || isBefore(date, addDays(checkIn, 1)) // interdit dates <= checkIn
+                                                    }
                                                 />
                                             </PopoverContent>
-                                            </Popover>
+                                        </Popover>
                                         </div>
                                     </div>
 
@@ -497,17 +503,21 @@ export default function ResidenceDetailPage() {
                                         className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-orange-500 hover:from-blue-700 hover:to-orange-600"
                                         onClick={() => {
                                             if (!checkIn || !checkOut) {
-                                                alert("Veuillez sélectionner vos dates d'arrivée et de départ.");
-                                                return;
+                                            alert("Veuillez sélectionner vos dates d'arrivée et de départ.");
+                                            return;
                                             }
 
                                             const nights = Math.ceil(
-                                                (checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60 * 24)
+                                            (checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60 * 24)
                                             );
                                             const total = calculateTotal() + Math.round(calculateTotal() * 0.1);
 
+                                            // Récupère l'URL de la première image de la résidence
+                                            const imageUrl = residenceData.images[0];
+
                                             const message = `Bonjour, je suis intéressé par la réservation de la résidence :
                                             - 🏡 Résidence : ${residenceData.title}
+                                            - 📷 Photo Résidence : ${imageUrl}
                                             - 📅 Arrivée : ${checkIn.toLocaleDateString("fr-FR")}
                                             - 📅 Départ : ${checkOut.toLocaleDateString("fr-FR")}
                                             - 👥 Voyageurs : ${guests}
