@@ -13,9 +13,15 @@ const featuredResidences = [
     title: "Résidence Luxieuse Angré CNPS",
     titleEn: "Luxury Residence, Angre CNPS",
     location: "Angré CNPS, Abidjan",
-    price: 25.000,
+    price: 25000,
     rating: 4.9,
     reviews: 127,
+    specs: {
+      guests: 1,
+      bedrooms: 1,
+      bathrooms: 1,
+      area: 180,
+    },
     image: "/residences/1.png?height=300&width=400",
     amenities: ["Wifi", "Parking", "Balcon"],
     category: "Luxe",
@@ -26,9 +32,15 @@ const featuredResidences = [
     title: "Résidence Luxieuse Angré CNPS",
     titleEn: "Luxury Residence, Angre CNPS",
     location: "Angré CNPS, Abidjan",
-    price: 25.000,
+    price: 25000,
     rating: 4.9,
     reviews: 127,
+    specs: {
+      guests: 1,
+      bedrooms: 1,
+      bathrooms: 1,
+      area: 180,
+    },
     image: "/residences/2.png?height=300&width=400",
     amenities: ["Wifi", "Parking", "Climatisation"],
     category: "Luxe",
@@ -122,10 +134,10 @@ export function FeaturedResidences() {
                   <div>
                     <span className="text-2xl font-bold text-gray-900 dark:text-white">
                       {new Intl.NumberFormat('fr-FR', {
-                          style: 'currency',
-                          currency: 'XOF',
-                          minimumFractionDigits: 0
-                        }).format(residence.price)}
+                        style: 'currency',
+                        currency: 'XOF',
+                        minimumFractionDigits: 0
+                      }).format(residence.price)}
                     </span>
                     <span className="text-gray-500 dark:text-gray-400 text-sm ml-1">{t("featured.perNight")}</span>
                   </div>

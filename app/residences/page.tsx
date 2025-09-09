@@ -9,6 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Star, MapPin, Heart, Search, Filter, Users, Wifi, Car, Waves } from "lucide-react"
 import Link from "next/link"
 import { useSearchParams } from "next/navigation"
+import { useLanguage } from "@/components/language-context"
 
 const mockResidences = [
   // {
@@ -142,7 +143,7 @@ const mockResidences = [
     title: "Résidence Luxieuse Angré CNPS",
     titleEn: "Luxury Residence, Angre CNPS",
     location: "Angré CNPS, Abidjan",
-    price: 25.000,
+    price: 25000,
     rating: 4.9,
     reviews: 127,
     bedrooms: 1,
@@ -158,7 +159,7 @@ const mockResidences = [
     title: "Résidence Luxieuse Angré CNPS",
     titleEn: "Luxury Residence, Angre CNPS",
     location: "Angré CNPS, Abidjan",
-    price: 25.000,
+    price: 25000,
     rating: 4.9,
     reviews: 127,
     bedrooms: 1,
@@ -182,6 +183,8 @@ export default function ResidencesPage() {
 
   const searchParams = useSearchParams()
   const categoryFromUrl = searchParams.get("category")
+  const { t, language } = useLanguage()
+
 
   useEffect(() => {
     if (categoryFromUrl) {
@@ -374,9 +377,9 @@ export default function ResidencesPage() {
                     ))}
                   </div>
 
-                  <div className="flex items-center justify-between mb-4">
+                  {/* <div className="flex items-center justify-between mb-4">
                     <div>
-                      {/* <span className="text-2xl font-bold text-gray-900 dark:text-white">{residence.price}Fcfa</span> */}
+                      <span className="text-2xl font-bold text-gray-900 dark:text-white">{residence.price}Fcfa</span>
                       <span className="text-2xl font-bold text-gray-900 dark:text-white">
                         {new Intl.NumberFormat('fr-FR', {
                           style: 'currency',
@@ -388,12 +391,27 @@ export default function ResidencesPage() {
                     </div>
                   </div>
 
-                  <div className="flex gap-2">
+                  <div className="flex gap-2">  
                     <Button className="flex-1 bg-blue-600 hover:bg-blue-700" asChild>
                       <Link href={`/residence/${residence.id}`}>Voir détails</Link>
                     </Button>
                     <Button variant="outline" className="flex-1" asChild>
                       <Link href={`/booking/${residence.id}`}>Réserver</Link>
+                    </Button>
+                  </div> */}
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <span className="text-2xl font-bold text-gray-900 dark:text-white">
+                        {new Intl.NumberFormat('fr-FR', {
+                          style: 'currency',
+                          currency: 'XOF',
+                          minimumFractionDigits: 0
+                        }).format(residence.price)}
+                      </span>
+                      <span className="text-gray-500 dark:text-gray-400 text-sm ml-1">{t("featured.perNight")}</span>
+                    </div>
+                    <Button className="bg-blue-600 hover:bg-blue-700" asChild>
+                      <Link href={`/residence/${residence.id}`}>{t("featured.seeMore")}</Link>
                     </Button>
                   </div>
                 </CardContent>

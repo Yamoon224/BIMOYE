@@ -44,6 +44,73 @@ const residenceData = {
   },
 }
 
+const featuredResidences = [
+  {
+    id: 1,
+    title: "Résidence Luxieuse Angré CNPS",
+    titleEn: "Luxury Residence, Angre CNPS",
+    location: "Angré CNPS, Abidjan",
+    price: 25.000,
+    rating: 4.9,
+    reviews: 127,
+    specs: {
+      guests: 1,
+      bedrooms: 1,
+      bathrooms: 1,
+      area: 180,
+    },
+    image: "/residences/1.png?height=300&width=400",
+    amenities: ["Wifi", "Parking", "Balcon"],
+    category: "Luxe",
+    categoryEn: "Luxury",
+  },
+  {
+    id: 2,
+    title: "Résidence Luxieuse Angré CNPS",
+    titleEn: "Luxury Residence, Angre CNPS",
+    location: "Angré CNPS, Abidjan",
+    price: 25.000,
+    rating: 4.9,
+    reviews: 127,
+    specs: {
+      guests: 1,
+      bedrooms: 1,
+      bathrooms: 1,
+      area: 180,
+    },
+    image: "/residences/2.png?height=300&width=400",
+    amenities: ["Wifi", "Parking", "Climatisation"],
+    category: "Luxe",
+    categoryEn: "Luxury",
+  },
+  // {
+  //   id: 2,
+  //   title: "Chalet Montagne - Spa privé",
+  //   titleEn: "Mountain Chalet - Private Spa",
+  //   location: "Chamonix, France",
+  //   price: 380,
+  //   rating: 4.8,
+  //   reviews: 89,
+  //   image: "/placeholder.svg?height=300&width=400",
+  //   amenities: ["Wifi", "Spa", "Cheminée"],
+  //   category: "Nature",
+  //   categoryEn: "Nature",
+  // },
+  // {
+  //   id: 3,
+  //   title: "Appartement Design - Centre historique",
+  //   titleEn: "Design Apartment - Historic Center",
+  //   location: "Lyon, France",
+  //   price: 220,
+  //   rating: 4.7,
+  //   reviews: 203,
+  //   image: "/placeholder.svg?height=300&width=400",
+  //   amenities: ["Wifi", "Climatisation", "Balcon"],
+  //   category: "Urbain",
+  //   categoryEn: "Urban",
+  // },
+]
+
 export default function BookingPage({ params }: { params: { id: string } }) {
   const [checkIn, setCheckIn] = useState("2024-06-15")
   const [checkOut, setCheckOut] = useState("2024-06-20")
