@@ -793,12 +793,12 @@ export default function ResidenceDetailPage() {
 
                             {/* Voyageurs */}
                             <div className="mb-4">
-                                <label className="text-sm">Voyageurs</label>
+                                <label className="text-sm">Nbre Personnes</label>
                                 <Select value={guests} onValueChange={setGuests}>
                                     <SelectTrigger><Users className="h-4 w-4 mr-2" /><SelectValue /></SelectTrigger>
                                     <SelectContent>
                                         {[...Array(8)].map((_, i) => (
-                                            <SelectItem key={i + 1} value={String(i + 1)}>{i + 1} voyageur{i > 0 && "s"}</SelectItem>
+                                            <SelectItem key={i + 1} value={String(i + 1)}>{i + 1} personne{i > 0 && "s"}</SelectItem>
                                         ))}
                                     </SelectContent>
                                 </Select>
@@ -808,16 +808,16 @@ export default function ResidenceDetailPage() {
                             {checkIn && checkOut && (
                                 <div className="border-t pt-4 mb-4 space-y-2 text-sm">
                                     <div className="flex justify-between">
-                                        <span>{formatPrice(residenceData.price)} × {Math.ceil((checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60 * 24))} nuits</span>
+                                        <span>{formatPrice(residenceData.price)} × {Math.ceil((checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60 * 24))} nuit(s)</span>
                                         <span>{formatPrice(calculateTotal())}</span>
                                     </div>
-                                    <div className="flex justify-between">
+                                    {/* <div className="flex justify-between">
                                         <span>Frais de service</span>
                                         <span>{formatPrice(Math.round(calculateTotal() * 0.1))}</span>
-                                    </div>
+                                    </div> */}
                                     <div className="flex justify-between font-semibold border-t pt-2">
                                         <span>Total</span>
-                                        <span>{formatPrice(calculateTotal() + Math.round(calculateTotal() * 0.1))}</span>
+                                        <span>{formatPrice(calculateTotal())}</span>
                                     </div>
                                 </div>
                             )}
@@ -837,7 +837,7 @@ export default function ResidenceDetailPage() {
                                     - 🏠 Résidence : ${residenceData.title}
                                     - 📅 Arrivée : ${checkIn.toLocaleDateString("fr-FR")}
                                     - 📅 Départ : ${checkOut.toLocaleDateString("fr-FR")}
-                                    - 👥 Voyageurs : ${guests}
+                                    - 👥 Nbre Personnes : ${guests}
                                     - 💵 Prix par nuit : ${formatPrice(residenceData.price)}
                                     - 🌙 Nuits : ${nights}
                                     - 🧾 Total (avec frais) : ${formatPrice(total)}
@@ -851,7 +851,7 @@ export default function ResidenceDetailPage() {
                                 <CalendarCheck className="w-5 h-5 mr-2" />
                                 Réserver maintenant
                             </Button>
-                            <p className="text-xs text-center text-gray-500 mt-2">Vous ne serez pas débité pour le moment</p>
+                            <p className="text-xs text-center text-gray-500 mt-2">Nous vous contacterons dans les brefs délai</p>
                         </CardContent>
                     </Card>
                 </div>

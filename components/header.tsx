@@ -66,7 +66,7 @@ export function Header() {
           <div className="flex items-center space-x-4">
             <ThemeToggle />
             <LanguageToggle />
-            <CurrencyToggle />
+            {/* <CurrencyToggle /> */}
 
             {/* User menu */}
             {/* <DropdownMenu>
@@ -115,14 +115,14 @@ export function Header() {
         {isMenuOpen && (
           <div className="md:hidden border-t py-4">
             <nav className="flex flex-col space-y-4">
-              <Link
+              {/* <Link
                 href="/categories"
                 className={`text-sm font-medium transition-colors ${
                   isActive("/categories") ? "text-primary" : "text-muted-foreground hover:text-primary"
                 }`}
               >
                 {t("nav.categories")}
-              </Link>
+              </Link> */}
               <Link
                 href="/residences"
                 className={`text-sm font-medium transition-colors ${
@@ -139,7 +139,7 @@ export function Header() {
               >
                 {t("nav.about")}
               </Link>
-              <Link
+              {/* <Link
                 href="/dashboard"
                 className={`text-sm font-medium transition-colors ${
                   isActive("/dashboard") ? "text-primary" : "text-muted-foreground hover:text-primary"
@@ -154,7 +154,7 @@ export function Header() {
                 }`}
               >
                 {t("nav.login")}
-              </Link>
+              </Link> */}
             </nav>
           </div>
         )}
