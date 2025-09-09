@@ -30,7 +30,7 @@ export function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <Link
+            {/* <Link
               href="/categories"
               className={`text-sm font-medium transition-colors ${
                 isActive("/categories")
@@ -39,7 +39,7 @@ export function Header() {
               }`}
             >
               {t("nav.categories")}
-            </Link>
+            </Link> */}
             <Link
               href="/residences"
               className={`text-sm font-medium transition-colors ${
