@@ -145,6 +145,9 @@ const mockResidences = [
     price: 25.000,
     rating: 4.9,
     reviews: 127,
+    bedrooms: 1,
+    bathrooms: 1,
+    guests: 1,
     image: "/residences/1.png?height=300&width=400",
     amenities: ["Wifi", "Parking", "Balcon"],
     category: "Luxe",
@@ -158,6 +161,9 @@ const mockResidences = [
     price: 25.000,
     rating: 4.9,
     reviews: 127,
+    bedrooms: 1,
+    bathrooms: 1,
+    guests: 1,
     image: "/residences/2.png?height=300&width=400",
     amenities: ["Wifi", "Parking", "Climatisation"],
     category: "Luxe",
@@ -351,10 +357,10 @@ export default function ResidencesPage() {
                   <div className="flex items-center gap-4 mb-4 text-sm text-gray-600 dark:text-gray-300">
                     <div className="flex items-center">
                       <Users className="h-4 w-4 mr-1" />
-                      {residence.guests} voyageurs
+                      {residence?.guests} voyageurs
                     </div>
-                    <div>{residence.bedrooms} chambres</div>
-                    <div>{residence.bathrooms} salles de bain</div>
+                    <div>{residence?.bedrooms} chambres</div>
+                    <div>{residence?.bathrooms} salles de bain</div>
                   </div>
 
                   <div className="flex flex-wrap gap-2 mb-4">
@@ -370,7 +376,14 @@ export default function ResidencesPage() {
 
                   <div className="flex items-center justify-between mb-4">
                     <div>
-                      <span className="text-2xl font-bold text-gray-900 dark:text-white">{residence.price}Fcfa</span>
+                      {/* <span className="text-2xl font-bold text-gray-900 dark:text-white">{residence.price}Fcfa</span> */}
+                      <span className="text-2xl font-bold text-gray-900 dark:text-white">
+                        {new Intl.NumberFormat('fr-FR', {
+                          style: 'currency',
+                          currency: 'XOF',
+                          minimumFractionDigits: 0
+                        }).format(residence.price)}
+                      </span>
                       <span className="text-gray-500 text-sm ml-1">/ nuit</span>
                     </div>
                   </div>

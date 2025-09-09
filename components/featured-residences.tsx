@@ -120,7 +120,13 @@ export function FeaturedResidences() {
 
                 <div className="flex items-center justify-between">
                   <div>
-                    <span className="text-2xl font-bold text-gray-900 dark:text-white">{residence.price}Fcfa</span>
+                    <span className="text-2xl font-bold text-gray-900 dark:text-white">
+                      {new Intl.NumberFormat('fr-FR', {
+                          style: 'currency',
+                          currency: 'XOF',
+                          minimumFractionDigits: 0
+                        }).format(residence.price)}
+                    </span>
                     <span className="text-gray-500 dark:text-gray-400 text-sm ml-1">{t("featured.perNight")}</span>
                   </div>
                   <Button className="bg-blue-600 hover:bg-blue-700" asChild>
