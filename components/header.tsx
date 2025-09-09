@@ -25,7 +25,7 @@ export function Header() {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
-            <Image src="/logo.webp" alt="Mafamo Press Group" width={120} height={40} className="h-10 w-auto" />
+            <Image src="/logo.png" alt="BiMoye" width={120} height={40} className="h-10 w-auto" />
           </Link>
 
           {/* Desktop Navigation */}
