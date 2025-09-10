@@ -9,7 +9,7 @@ const teamMembers = [
   {
     name: "Christian YAMTCHE",
     role: "MANAGER PRINCIPALE",
-    roleEn: "CEO",
+    roleEn: "MANAGER",
     image: "/team/manager.webp",
     description: "Gestionnaire expérimentée guidant la vision stratégique et la gouvernance de l'entreprise.",
     descriptionEn: "Visionary leader with deep expertise in developing innovative businesses.",
@@ -19,7 +19,7 @@ const teamMembers = [
   },
   {
     name: "Yamoussa KEITA",
-    role: "Manager Assistant",
+    role: "TECH LEAD & MANAGER ASSISTANT",
     roleEn: "TECH LEAD & ASSISTANT MANAGER",
     image: "https://groupmafamo.com/images/team/assistant.webp",
     description: "Lead Tech, spécialisé dans la coordination stratégique et opérationnelle.",
