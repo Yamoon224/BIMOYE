@@ -9,7 +9,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Logo et description */}
           <div className="space-y-4">
-            <Image src="/logo.webp" alt="Mafamo Press Group" width={150} height={50} className="h-12 w-auto" />
+            <Image src="/logo.png" alt="BiMOYE" width={150} height={50} className="h-12 w-auto" />
             <p className="text-gray-300 text-sm">
               Votre partenaire de confiance pour des séjours exceptionnels dans les plus belles résidences.
             </p>
@@ -34,11 +34,11 @@ export function Footer() {
                   Toutes les résidences
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link href="/dashboard" className="text-gray-300 hover:text-white">
                   Mon compte
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
 
