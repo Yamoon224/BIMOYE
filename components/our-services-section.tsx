@@ -110,14 +110,14 @@ export function OurServicesSection() {
           })}
         </div>
 
-        <div className="text-center mt-12">
+        {/* <div className="text-center mt-12">
           <Button
             size="lg"
             className="bg-gradient-to-r from-blue-600 to-orange-500 hover:from-blue-700 hover:to-orange-600"
           >
             {language === "fr" ? "Découvrir tous nos services" : "Discover all our services"}
           </Button>
-        </div>
+        </div> */}
       </div>
     </section>
   )

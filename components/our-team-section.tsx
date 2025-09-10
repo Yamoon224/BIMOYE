@@ -8,7 +8,7 @@ import { Linkedin, Twitter, Mail } from "lucide-react"
 const teamMembers = [
   {
     name: "Christian YAMTCHE",
-    role: "GESTIONNAIRE PRINCIPALE",
+    role: "MANAGER PRINCIPALE",
     roleEn: "CEO",
     image: "/team/manager.webp",
     description: "Gestionnaire expérimentée guidant la vision stratégique et la gouvernance de l'entreprise.",
@@ -20,7 +20,7 @@ const teamMembers = [
   {
     name: "Yamoussa KEITA",
     role: "Manager Assistant",
-    roleEn: "Assistant Manager",
+    roleEn: "TECH LEAD & ASSISTANT MANAGER",
     image: "https://groupmafamo.com/images/team/assistant.webp",
     description: "Lead Tech, spécialisé dans la coordination stratégique et opérationnelle.",
     descriptionEn: "CEO's right hand, specialized in strategic and operational coordination.",

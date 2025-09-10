@@ -24,11 +24,11 @@ export function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">Liens rapides</h3>
             <ul className="space-y-2 text-sm">
-              <li>
+              {/* <li>
                 <Link href="/categories" className="text-gray-300 hover:text-white">
                   Catégories
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link href="/residences" className="text-gray-300 hover:text-white">
                   Toutes les résidences
@@ -75,22 +75,34 @@ export function Footer() {
             <div className="space-y-3 text-sm">
               <div className="flex items-center">
                 <Mail className="h-4 w-4 mr-2 text-orange-400" />
-                <span className="text-gray-300">contact@mafamo.com</span>
+                <a 
+                  href="mailto:contact@bimoye.com" 
+                  className="text-gray-300 hover:underline"
+                >
+                  contact@bimoye.com
+                </a>
               </div>
+
               <div className="flex items-center">
                 <Phone className="h-4 w-4 mr-2 text-orange-400" />
-                <span className="text-gray-300">+33 1 23 45 67 89</span>
+                <a 
+                  href="tel:+2250564461216" 
+                  className="text-gray-300 hover:underline"
+                >
+                  +225 05 64 46 12 16
+                </a>
               </div>
+
               <div className="flex items-center">
                 <MapPin className="h-4 w-4 mr-2 text-orange-400" />
-                <span className="text-gray-300">Paris, France</span>
+                <span className="text-gray-300">Abidjan, Côte d'Ivoire</span>
               </div>
             </div>
           </div>
         </div>
 
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-400">
-          <p>&copy; 2024 Mafamo Press Group. Tous droits réservés.</p>
+          <p>&copy; 2025 BiMOYE. Tous droits réservés.</p>
         </div>
       </div>
     </footer>
