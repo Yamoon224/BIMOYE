@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         openGraph: {
             title: residence.title,
             description: `Découvrez ${residence.title} à ${residence.location} dès ${residence.price} XOF/nuit.`,
-            url: `https://bimoye.com/residences/${residence.id}`,
+            url: `https://bimoye.com/residence/${residence.id}`,
             type: "article",
             images: [
                 {
