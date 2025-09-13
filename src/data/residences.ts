@@ -36,5 +36,28 @@ export const residences = [
         amenities: ["Wifi", "Parking", "Climatisation"],
         category: "Luxe",
         categoryEn: "Luxury",
-    }
+    },
+    {
+        id: 2,
+        title: "Résidence Luxieuse Angré CNPS",
+        titleEn: "Luxury Residence, Angre CNPS",
+        location: "Angré CNPS, Abidjan",
+        price: 25000,
+        rating: 4.9,
+        reviews: 127,
+        specs: {
+            guests: 1,
+            bedrooms: 1,
+            bathrooms: 1,
+            area: 180,
+        },
+        images: [
+            "/residences/angre_cnps_1.png?height=300&width=400", 
+            "/residences/angre_cnps_2.png?height=300&width=400",
+            "/residences/angre_cnps_3.png?height=300&width=400"
+        ],
+        amenities: ["Wifi", "Parking", "Climatisation"],
+        category: "Luxe",
+        categoryEn: "Luxury",
+    },
 ]

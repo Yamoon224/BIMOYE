@@ -1,78 +1,13 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
+import Link from "next/link"
 import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { residences } from "@/src/data/residences" // ton tableau existant
+import { Card, CardContent } from "@/components/ui/card"
 import { useLanguage } from "@/components/language-context"
 import { Star, MapPin, Wifi, Car, Waves } from "lucide-react"
-import Link from "next/link"
 
-const featuredResidences = [
-  {
-    id: 1,
-    title: "Résidence Luxieuse Angré CNPS",
-    titleEn: "Luxury Residence, Angre CNPS",
-    location: "Angré CNPS, Abidjan",
-    price: 25000,
-    rating: 4.9,
-    reviews: 127,
-    specs: {
-      guests: 1,
-      bedrooms: 1,
-      bathrooms: 1,
-      area: 180,
-    },
-    image: "/residences/1.png?height=300&width=400",
-    amenities: ["Wifi", "Parking", "Balcon"],
-    category: "Luxe",
-    categoryEn: "Luxury",
-  },
-  {
-    id: 2,
-    title: "Résidence Luxieuse Angré CNPS",
-    titleEn: "Luxury Residence, Angre CNPS",
-    location: "Angré CNPS, Abidjan",
-    price: 25000,
-    rating: 4.9,
-    reviews: 127,
-    specs: {
-      guests: 1,
-      bedrooms: 1,
-      bathrooms: 1,
-      area: 180,
-    },
-    image: "/residences/2.png?height=300&width=400",
-    amenities: ["Wifi", "Parking", "Climatisation"],
-    category: "Luxe",
-    categoryEn: "Luxury",
-  },
-  // {
-  //   id: 2,
-  //   title: "Chalet Montagne - Spa privé",
-  //   titleEn: "Mountain Chalet - Private Spa",
-  //   location: "Chamonix, France",
-  //   price: 380,
-  //   rating: 4.8,
-  //   reviews: 89,
-  //   image: "/placeholder.svg?height=300&width=400",
-  //   amenities: ["Wifi", "Spa", "Cheminée"],
-  //   category: "Nature",
-  //   categoryEn: "Nature",
-  // },
-  // {
-  //   id: 3,
-  //   title: "Appartement Design - Centre historique",
-  //   titleEn: "Design Apartment - Historic Center",
-  //   location: "Lyon, France",
-  //   price: 220,
-  //   rating: 4.7,
-  //   reviews: 203,
-  //   image: "/placeholder.svg?height=300&width=400",
-  //   amenities: ["Wifi", "Climatisation", "Balcon"],
-  //   category: "Urbain",
-  //   categoryEn: "Urban",
-  // },
-]
 
 export function FeaturedResidences() {
   const { t, language } = useLanguage()
@@ -86,11 +21,11 @@ export function FeaturedResidences() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {featuredResidences.map((residence) => (
+          {residences.map((residence) => (
             <Card key={residence.id} className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
               <div className="relative">
                 <img
-                  src={residence.image || "/placeholder.svg"}
+                  src={residence.images[0] || "/placeholder.svg"}
                   alt={language === "fr" ? residence.title : residence.titleEn}
                   className="w-full h-64 object-cover"
                 />
