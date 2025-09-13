@@ -38,7 +38,7 @@ export const residences = [
         categoryEn: "Luxury",
     },
     {
-        id: 2,
+        id: 3,
         title: "Résidence Luxieuse Angré CNPS",
         titleEn: "Luxury Residence, Angre CNPS",
         location: "Angré CNPS, Abidjan",
