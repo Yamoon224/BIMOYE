@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
-import { residences } from "@/src/data/residences" // ton tableau existant
 import ResidenceDetail from "./residence-detail"
+import { residences } from "@/src/data/residences" // ton tableau existant
 
 type Props = { params: { id: string } }
 
@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
             card: "summary_large_image",
             title: residence.title,
             description: `Découvrez ${residence.title} à ${residence.location}`,
-            images: [residence.images[0]],
+            images: residence.images,
         },
     }
 }
