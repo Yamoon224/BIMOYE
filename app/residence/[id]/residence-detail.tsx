@@ -55,39 +55,46 @@ export default function ResidenceDetail({ data }: ResidenceProps) {
 
     return (
         <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-            <div className="container mx-auto px-4 py-4 grid lg:grid-cols-3 gap-8">
+            <div className="container mx-auto px-4 py-4 grid gap-6 sm:gap-8 lg:grid-cols-3">        
                 {/* Contenu principal */}
                 <div className="lg:col-span-2 space-y-4">
-                    {/* Galerie d'images */}
+                    
+                    {/* Galerie */}
                     <div className="relative">
-                        <div className="aspect-video rounded-lg overflow-hidden">
+                        <div className="aspect-square sm:aspect-video rounded-lg overflow-hidden">
                             <img
                                 src={data.images[currentImageIndex] || "/placeholder.svg"}
                                 alt={`${data.title} - Image ${currentImageIndex + 1}`}
                                 className="w-full h-full object-cover"
                             />
                         </div>
-                        <Button
-                            variant="outline"
-                            size="sm"
-                            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white"
-                            onClick={prevImage}
-                        >
-                            <ChevronLeft className="h-4 w-4" />
-                        </Button>
-                        <Button
-                            variant="outline"
-                            size="sm"
-                            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white"
-                            onClick={nextImage}
-                        >
-                            <ChevronRight className="h-4 w-4" />
-                        </Button>
-                        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
+                        
+                        {/* Boutons navigation visibles seulement à partir de sm */}
+                        <div className="hidden sm:block">
+                            <Button
+                                variant="outline"
+                                size="sm"
+                                className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white"
+                                onClick={prevImage}
+                            >
+                                <ChevronLeft className="h-4 w-4" />
+                            </Button>
+                            <Button
+                                variant="outline"
+                                size="sm"
+                                className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white"
+                                onClick={nextImage}
+                            >
+                                <ChevronRight className="h-4 w-4" />
+                            </Button>
+                        </div>
+                        
+                        {/* Indicateurs */}
+                        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
                             {data.images.map((_, index) => (
                                 <button
                                     key={index}
-                                    className={`w-2 h-2 rounded-full ${index === index ? "bg-white" : "bg-white/50"}`}
+                                    className={`w-2 h-2 rounded-full ${index === currentImageIndex ? "bg-white" : "bg-white/50"}`}
                                     onClick={() => setCurrentImageIndex(index)}
                                 />
                             ))}
@@ -97,14 +104,19 @@ export default function ResidenceDetail({ data }: ResidenceProps) {
                     {/* Infos */}
                     <Card>
                         <CardContent className="p-6">
-                            <h1 className="text-3xl font-bold">{data.title}</h1>
-                            <div className="flex gap-2 items-center mt-2 text-gray-600">
-                                <Star className="h-4 w-4 text-yellow-400 fill-current" />
-                                <span>{data.rating} ({data.reviews} avis)</span>
-                                <MapPin className="h-4 w-4 ml-4" />
-                                <span>{data.location}</span>
+                            <h1 className="text-2xl sm:text-3xl font-bold">{data.title}</h1>
+                            <div className="flex flex-col sm:flex-row sm:items-center sm:gap-4 mt-2 text-gray-600">
+                                <div className="flex items-center gap-1">
+                                    <Star className="h-4 w-4 text-yellow-400 fill-current" />
+                                    <span>{data.rating} ({data.reviews} avis)</span>
+                                </div>
+                                <div className="flex items-center gap-1">
+                                    <MapPin className="h-4 w-4" />
+                                    <span>{data.location}</span>
+                                </div>
                             </div>
-                            <div className="flex gap-6 mt-4">
+                            
+                            <div className="flex flex-wrap gap-4 mt-4 text-sm">
                                 <div className="flex items-center gap-1"><Users className="h-4 w-4" /> {data.specs.guests} pers</div>
                                 <div className="flex items-center gap-1"><Bed className="h-4 w-4" /> {data.specs.bedrooms} ch</div>
                                 <div className="flex items-center gap-1"><Bath className="h-4 w-4" /> {data.specs.bathrooms} sdb</div>
@@ -117,7 +129,7 @@ export default function ResidenceDetail({ data }: ResidenceProps) {
                     <Card>
                         <CardContent className="p-6">
                             <h3 className="text-lg font-semibold mb-4">Équipements</h3>
-                            <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                                 {data.amenities.map((a: any, i: any) => (
                                     <div key={i} className="text-gray-700 dark:text-gray-300">{a}</div>
                                 ))}
@@ -125,8 +137,9 @@ export default function ResidenceDetail({ data }: ResidenceProps) {
                         </CardContent>
                     </Card>
 
-                    {/* Boutons de partage */}
-                    <div className="mt-6 flex gap-3">
+                    {/* Partage */}
+                    <div className="mt-6 grid grid-cols-2 gap-2 sm:flex sm:gap-3">
+                        {/* ... tes boutons */}
                         <Button variant="outline" size="sm" onClick={() => window.open(`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`, "_blank")}>
                             <Facebook className="w-4 h-4 mr-1" /> Facebook
                         </Button>
@@ -138,13 +151,14 @@ export default function ResidenceDetail({ data }: ResidenceProps) {
                         </Button>
                         <Button variant="outline" size="sm" onClick={() => window.open(`https://www.linkedin.com/shareArticle?mini=true&url=${shareUrl}&title=${shareTitle}`, "_blank")}>
                             <Linkedin className="w-4 h-4 mr-1" /> LinkedIn
-                        </Button>
+                        </Button>        
                     </div>
                 </div>
 
-                {/* Sidebar réservation */}
-                <div className="space-y-6">
-                    <Card className="sticky top-4">
+                {/* Sidebar */}
+                <div className="space-y-6 lg:sticky lg:top-4">
+                    <Card>
+                        {/* ... réservation */}
                         <CardContent className="p-6">
                             <div className="text-center mb-6">
                                 <div className="text-3xl font-bold">{formatPrice(data.price)}</div>
@@ -240,15 +254,15 @@ export default function ResidenceDetail({ data }: ResidenceProps) {
                                     const total = calculateTotal()
 
                                     const message = `Bonjour, je suis intéressé par la réservation :
-🏠 Résidence : ${data.title}
-📅 Arrivée : ${checkIn.toLocaleDateString("fr-FR")}
-📅 Départ : ${checkOut.toLocaleDateString("fr-FR")}
-👥 Nbre Personnes : ${guests}
-💵 Prix par nuit : ${formatPrice(data.price)}
-🌙 Nuits : ${nights}
-🧾 Total : ${formatPrice(total)}
+        🏠 Résidence : ${data.title}
+        📅 Arrivée : ${checkIn.toLocaleDateString("fr-FR")}
+        📅 Départ : ${checkOut.toLocaleDateString("fr-FR")}
+        👥 Nbre Personnes : ${guests}
+        💵 Prix par nuit : ${formatPrice(data.price)}
+        🌙 Nuits : ${nights}
+        🧾 Total : ${formatPrice(total)}
 
-Pouvez-vous me confirmer la disponibilité ?`
+        Pouvez-vous me confirmer la disponibilité ?`
 
                                     const phoneNumber = "2250564461216"
                                     window.location.href = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`

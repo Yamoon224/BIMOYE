@@ -2,11 +2,13 @@ import type { Metadata } from "next"
 import ResidenceDetail from "./residence-detail"
 import { residences } from "@/src/data/residences" // ton tableau existant
 
-type Props = { params: { id: string } }
+interface Props {
+    params: Promise<{ id: string }>
+}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-    const id = Number(params.id)
-    const residence = residences.find(r => r.id === id)
+    const { id } = await params
+    const residence = residences.find(r => r.id === Number(id))
 
     if (!residence) {
         return {
@@ -41,9 +43,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
 }
 
-export default function Page({ params }: Props) {
-    const id = Number(params.id)
-    const residence = residences.find(r => r.id === id)
+export default async function Page({ params }: Props) {
+    const { id } = await params
+    const residence = residences.find(r => r.id === Number(id))
 
     if (!residence) return (
         <div className="min-h-screen flex items-center justify-center">

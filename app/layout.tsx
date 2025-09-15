@@ -10,16 +10,27 @@ import { Footer } from "@/components/footer"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "BiMOYE",
-  description:
+  metadataBase: new URL("https://bimoye.com"), // ← ton domaine prod
+  title: {
+    default: "Découvrez et réservez des résidences exceptionnelles",
+    template: "Découvrez et réservez des résidences exceptionnelles pour vos vacances",
+  },
+  description: 
     "Découvrez et réservez des résidences exceptionnelles pour vos vacances. Villas, chalets, appartements de luxe dans les plus belles destinations.",
+  openGraph: {
+    images: ["/logo.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/logo.png"],
+  },
   generator: "Yamoussa KEITA",
   icons: {
     icon: "/favicon.ico", // favicon par défaut
     shortcut: "/favicon.ico",
     apple: "/logo.png", // pour iOS si tu veux
   },
-};
+}
 
 export default function RootLayout({
   children,
