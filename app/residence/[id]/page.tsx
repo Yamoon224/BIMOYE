@@ -18,27 +18,24 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
 
     return {
-        title: residence.title,
+        metadataBase: new URL(`https://bimoye.com/residence/${residence.id}`), // ← ton domaine prod
+        title: {
+            default: residence.title,
+            template: residence.title,
+        },
         description: `Découvrez ${residence.title} à ${residence.location} dès ${residence.price} XOF/nuit.`,
         openGraph: {
-            title: residence.title,
-            description: `Découvrez ${residence.title} à ${residence.location} dès ${residence.price} XOF/nuit.`,
-            url: `https://bimoye.com/residence/${residence.id}`,
-            type: "article",
-            images: [
-                {
-                    url: residence.images[0],
-                    width: 1200,
-                    height: 630,
-                    alt: residence.title,
-                },
-            ],
+            images: residence.images,
         },
         twitter: {
             card: "summary_large_image",
-            title: residence.title,
-            description: `Découvrez ${residence.title} à ${residence.location}`,
             images: residence.images,
+        },
+        generator: "Yamoussa KEITA",
+        icons: {
+            icon: "/favicon.ico", // favicon par défaut
+            shortcut: "/favicon.ico",
+            apple: "/logo.png", // pour iOS si tu veux
         },
     }
 }
